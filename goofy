@@ -52,7 +52,7 @@ FOV_CIRCLE.Radius = _G.FOV
 FOV_CIRCLE.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
 
 Options = {
-	Torso = "HumanoidRootPart";
+	UpperTorso = "HumanoidRootPart";
 	Head = "Head";
 }
 
@@ -113,12 +113,12 @@ mt.__index = newcclosure(function(self, What)
 			for _, v in pairs(Players:GetPlayers()) do 
 				if v ~= LocalPlayer and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Humanoid").Health > 0 then
 					local Enemy = v.Character
-					local CastingFrom = CFrame.new(Camera.CFrame.Position, Enemy[Options.Torso].CFrame.Position) * CFrame.new(0, 0, -4)
+					local CastingFrom = CFrame.new(Camera.CFrame.Position, Enemy[Options.UpperTorso].CFrame.Position) * CFrame.new(0, 0, -4)
 					local RayCast = Ray.new(CastingFrom.Position, CastingFrom.LookVector * 9000)
 					local World, ToSpace = workspace:FindPartOnRayWithIgnoreList(RayCast,  {LocalPlayer.Character:FindFirstChild("Head")})
-					local RootWorld = (Enemy[Options.Torso].CFrame.Position - ToSpace).magnitude
+					local RootWorld = (Enemy[Options.UpperTorso].CFrame.Position - ToSpace).magnitude
 					if RootWorld < 4 then
-						local RootPartPosition, Visible = Camera:WorldToScreenPoint(Enemy[Options.Torso].Position)
+						local RootPartPosition, Visible = Camera:WorldToScreenPoint(Enemy[Options.UpperTorso].Position)
 						if Visible then
 							local Real_Magnitude = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(RootPartPosition.X, RootPartPosition.Y)).Magnitude
 							if Real_Magnitude < Distance and Real_Magnitude < FOV_CIRCLE.Radius then
@@ -130,7 +130,7 @@ mt.__index = newcclosure(function(self, What)
 				end
 			end
 
-			TorsoWasHere.Size = Vector3.new(Target[Options.Torso].Size)
+			TorsoWasHere.Size = Vector3.new(Target[Options.UpperTorso].Size)
 			TorsoWasHere.CFrame = Target[Options.Torso].CFrame
 			local StartTick = tick()
 			TorsoWasHere.Position = Target[Options.Torso].Position
@@ -139,7 +139,7 @@ mt.__index = newcclosure(function(self, What)
 			local ChangeInDisplacement = Target[Options.Torso].Position - Initial_PartPos
 			local deltaTime = (tick() - StartTick)
 			local Real_Velocity = (ChangeInDisplacement / deltaTime)
-			local Predicted_Position = Target[Options.Torso].Position + (Real_Velocity * _G.Prediction + Vector3.new(0,-0,0))
+			local Predicted_Position = Target[Options.UpperTorso].Position + (Real_Velocity * _G.Prediction + Vector3.new(0,-0,0))
 
 			if Target then
 				Fir = TorsoWasHere.CFrame + (Real_Velocity * _G.Prediction + Vector3.new(0,-0,0))
@@ -172,12 +172,12 @@ mt.__index = (function(self, What)
 			for _, v in pairs(Players:GetPlayers()) do 
 				if v ~= LocalPlayer and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Humanoid").Health > 0 then
 					local Enemy = v.Character	
-					local CastingFrom = CFrame.new(Camera.CFrame.Position, Enemy[Options.Torso].CFrame.Position) * CFrame.new(0, 0, -4)
+					local CastingFrom = CFrame.new(Camera.CFrame.Position, Enemy[Options.UpperTorso].CFrame.Position) * CFrame.new(0, 0, -4)
 					local RayCast = Ray.new(CastingFrom.Position, CastingFrom.LookVector * 9000)
 					local World, ToSpace = workspace:FindPartOnRayWithIgnoreList(RayCast, {LocalPlayer.Character:FindFirstChild("Head")})
-					local RootWorld = (Enemy[Options.Torso].CFrame.Position - ToSpace).magnitude
+					local RootWorld = (Enemy[Options.UpperTorso].CFrame.Position - ToSpace).magnitude
 					if RootWorld < 4 then
-						local RootPartPosition, Visible = Camera:WorldToScreenPoint(Enemy[Options.Torso].Position)
+						local RootPartPosition, Visible = Camera:WorldToScreenPoint(Enemy[Options.UpperTorso].Position)
 						if Visible then
 							local Real_Magnitude = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(RootPartPosition.X, RootPartPosition.Y)).Magnitude
 							if Real_Magnitude < Distance and Real_Magnitude < FOV_CIRCLE.Radius then
@@ -189,9 +189,9 @@ mt.__index = (function(self, What)
 				end
 			end
 		end
-		if Targete ~= nil and Targete[Options.Torso] and Targete:FindFirstChild("Humanoid").Health > 0 then
+		if Targete ~= nil and Targete[Options.UpperTorso] and Targete:FindFirstChild("Humanoid").Health > 0 then
 			if SilentAim then
-				local ShootThis = Targete[Options.Torso]
+				local ShootThis = Targete[Options.UpperTorso]
 				local Predicted_Position = ShootThis.CFrame + (ShootThis.AssemblyLinearVelocity * _G.Prediction + Vector3.new(0,-0,0))				
 				return ((What == Mir and Predicted_Position) or (What == Core and Predicted_Position))
 			end
