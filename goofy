@@ -142,7 +142,7 @@ mt.__index = newcclosure(function(self, What)
 			local Predicted_Position = Target[Options.Torso].Position + (Real_Velocity * _G.Prediction + Vector3.new(0,-0,0))
 
 			if Target then
-				Fir = TorsoWasHere.CFrame + (Real_Velocity * _G.Prediction + Vector3.new(0,-4,0))
+				Fir = TorsoWasHere.CFrame + (Real_Velocity * _G.Prediction + Vector3.new(0,-0,0))
 			end
 			if What == "X" then
 				Fir = UIS:GetMouseLocation().X
