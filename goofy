@@ -1,6 +1,6 @@
 _G.Prediction =  (  .18  )  -- [ Lower Prediction: Lower Ping | Higher Prediction: Higher Ping  ]
 
-_G.FOV =  (  350  )
+_G.FOV =  (  100  )
 
 _G.AimKey =  (  "c"  )
 
@@ -43,7 +43,7 @@ elseif make_writeable then
 end
 
 local FOV_CIRCLE = Drawing.new("Circle")
-FOV_CIRCLE.Visible = true
+FOV_CIRCLE.Visible = false
 FOV_CIRCLE.Filled = false
 FOV_CIRCLE.Thickness = 1
 FOV_CIRCLE.Transparency = 1
